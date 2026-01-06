@@ -1,0 +1,88 @@
+:root {
+  --neon-red: #ff1c1c;
+  --neon-blue: #00fff0;
+  --neon-green: #00ff99;
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --cell-size: 50px;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+.controls {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  color: white;
+}
+
+.sudoku-board {
+  display: grid;
+  grid-template-columns: repeat(9, var(--cell-size));
+  grid-template-rows: repeat(9, var(--cell-size));
+  gap: 4px;
+  background: var(--glass-bg);
+  padding: 15px;
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+}
+
+.cell {
+  background: var(--glass-bg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  font-size: 22px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  user-select: none;
+}
+
+.cell.highlight {
+  box-shadow: 0 0 15px 2px var(--neon-red);
+}
+
+.cell.prefilled {
+  color: #00ffea;
+  font-weight: bold;
+}
+
+.number-selection {
+  display: flex;
+  justify-content: space-between;
+  gap: 5px;
+}
+
+.number {
+  width: var(--cell-size);
+  height: var(--cell-size);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  background: var(--glass-bg);
+  color: white;
+  font-size: 22px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.number:hover {
+  box-shadow: 0 0 15px 2px var(--neon-blue);
+}
