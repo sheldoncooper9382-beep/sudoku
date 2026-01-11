@@ -1,30 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Sudoku – Glass UI</title>
   <link rel="stylesheet" href="game.css" />
 </head>
-
 <body>
-  <div class="glass-app">
-
+  <div class="glass-app" id="app">
     <h1>Sudoku</h1>
 
-    <div id="digits"></div>
+    <div id="digits" aria-label="Sudoku grid"></div>
 
-    <!-- Number Bar -->
-    <div id="number-bar"></div>
+    <div id="number-bar" aria-label="Number bar"></div>
 
-    <!-- Controls -->
-    <div class="controls">
+    <div class="controls" role="group" aria-label="Controls">
       <button class="jelly-btn" onclick="togglePencil()">✏️ Pencil</button>
       <button class="jelly-btn" onclick="undoMove()">↩ Undo</button>
-      <button class="jelly-btn" onclick="restart()">Restart</button>
-      <button class="jelly-btn" onclick="check()">Finish</button>
-      <button class="jelly-btn" onclick="location.href='index.html'">Levels</button>
+      <button class="jelly-btn" onclick="restart()">🔄 Restart</button>
+      <button class="jelly-btn" onclick="check()">✅ Finish</button>
+      <button class="jelly-btn" onclick="location.href='index.html'">⬅ Levels</button>
     </div>
-
   </div>
 
   <script src="game.js"></script>
