@@ -43,8 +43,23 @@ function drawBoard() {
       cell.dataset.row = r;
       cell.dataset.col = c;
 
+      const pencilGrid = document.createElement("div");
+      pencilGrid.className = "pencil-grid";
+
+      for (let i = 1; i <= 9; i++) {
+        const note = document.createElement("div");
+        note.className = "pencil-note";
+        note.dataset.num = i;
+        pencilGrid.appendChild(note);
+      }
+
+      cell.appendChild(pencilGrid);
+
       if (board[r][c] !== 0) {
-        cell.textContent = board[r][c];
+        const final = document.createElement("div");
+        final.className = "final-number";
+        final.textContent = board[r][c];
+        cell.appendChild(final);
         cell.classList.add("cube_start");
       }
 
@@ -63,30 +78,35 @@ for (let i = 1; i <= 9; i++) {
   numberBar.appendChild(btn);
 }
 
-/* ===== Place Number ===== */
+/* ===== Place Number / Pencil ===== */
 function placeNumber(num) {
   if (!selectedCell || selectedCell.classList.contains("cube_start")) return;
 
-  history.push({
-    cell: selectedCell,
-    value: selectedCell.textContent
-  });
+  history.push(selectedCell.innerHTML);
+
+  const pencilGrid = selectedCell.querySelector(".pencil-grid");
+  const final = selectedCell.querySelector(".final-number");
 
   if (pencilMode) {
-    selectedCell.classList.add("pencil");
-    let set = new Set(selectedCell.textContent.split(""));
-    set.has(String(num)) ? set.delete(String(num)) : set.add(String(num));
-    selectedCell.textContent = [...set].sort().join("");
+    if (final) return;
+
+    const slot = pencilGrid.querySelector(`[data-num='${num}']`);
+    slot.textContent = slot.textContent ? "" : num;
   } else {
-    selectedCell.classList.remove("pencil");
-    selectedCell.textContent = num;
+    selectedCell.innerHTML = "";
+
+    const finalNum = document.createElement("div");
+    finalNum.className = "final-number";
+    finalNum.textContent = num;
+
+    selectedCell.appendChild(finalNum);
   }
 }
 
 /* ===== Undo ===== */
 function undoMove() {
-  const last = history.pop();
-  if (last) last.cell.textContent = last.value;
+  if (!selectedCell || history.length === 0) return;
+  selectedCell.innerHTML = history.pop();
 }
 
 /* ===== Pencil Toggle ===== */
@@ -97,11 +117,13 @@ function togglePencil() {
 
 /* ===== Check ===== */
 function check() {
+  let i = 0;
   for (let r = 0; r < 9; r++) {
     for (let c = 0; c < 9; c++) {
-      const cell = grid.children[r * 9 + c];
-      if (parseInt(cell.textContent) !== solution[r][c]) {
-        alert("❌ Mistakes found");
+      const cell = grid.children[i++];
+      const final = cell.querySelector(".final-number");
+      if (!final || parseInt(final.textContent) !== solution[r][c]) {
+        alert("❌ There are mistakes.");
         return;
       }
     }
