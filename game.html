@@ -1,24 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Sudoku Game</title>
-  <link rel="stylesheet" href="game.css">
+  <meta charset="UTF-8" />
+  <title>Sudoku – Glass UI</title>
+  <link rel="stylesheet" href="game.css" />
 </head>
+
 <body>
+  <div class="glass-app">
 
-<h1>Sudoku</h1>
-<div id="timer"></div>
-<div id="digits"></div>
+    <h1>Sudoku</h1>
 
-<br>
-<button onclick="restart()">Restart</button>
-<button onclick="check()">Finish</button>
-<button onclick="window.location.href='levelPage.html'">Levels</button>
-<button class="jelly-btn restart-btn" onclick="restart()">Restart</button>
-<button class="jelly-btn finish-btn" onclick="check()">Finish</button>
-<button class="jelly-btn levels-btn" onclick="window.location.href='index.html'">Levels</button>
+    <div id="digits"></div>
 
-<script src="game.js"></script>
+    <!-- Number Bar -->
+    <div id="number-bar"></div>
+
+    <!-- Controls -->
+    <div class="controls">
+      <button class="jelly-btn" onclick="togglePencil()">✏️ Pencil</button>
+      <button class="jelly-btn" onclick="undoMove()">↩ Undo</button>
+      <button class="jelly-btn" onclick="restart()">Restart</button>
+      <button class="jelly-btn" onclick="check()">Finish</button>
+      <button class="jelly-btn" onclick="location.href='index.html'">Levels</button>
+    </div>
+
+  </div>
+
+  <script src="game.js"></script>
 </body>
 </html>
