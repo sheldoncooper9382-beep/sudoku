@@ -1,57 +1,81 @@
-header{
-    position: fixed;
-    align-items: center;
-    height:120px;
-    width:100%;
-    padding-right: 30px;
-    padding-left: 30px;
-    padding-top: 15px;
-    text-align: center;
-}
+/* ===== Global Dark Background ===== */
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    text-align: center;
+  min-height: 100vh;
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background: radial-gradient(circle at top, #1b2a4a, #020617);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
 }
-h2{
-    font-weight:bolder;
+
+/* ===== Glass Container ===== */
+.level-glass {
+  backdrop-filter: blur(18px);
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 26px;
+  padding: 40px 50px;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.65);
+  text-align: center;
+  min-width: 300px;
 }
-#Submit{
-    float:right;
-    background-color: white;
-    font-size: 14px;
-    text-align: center;
-    width: 90px;
-    margin: 20px 40px;
-    color: black;
-    border: none;
+
+.level-glass h2 {
+  margin-bottom: 28px;
+  font-size: 26px;
+  letter-spacing: 0.5px;
 }
-.ButtonInLevelPage{
-    margin-top: 100px;
-    margin-left: 50px;
-    align-content: space-around;
-    display:inline-block;
-    background-color: white;
-    height: 270px;
-    width:400px;
-    padding: 20px;
-    padding-top: 25px;
-    padding-bottom: 100px;
-    padding-left: 200px;
-    padding-right: 200px;
-    margin-top: 200px;   
+
+/* ===== Jelly Roll Buttons ===== */
+.level-btn {
+  display: block;
+  width: 220px;
+  margin: 14px auto;
+  padding: 16px 24px;
+  border-radius: 999px;
+  border: none;
+  font-size: 17px;
+  font-weight: 700;
+  color: #fff;
+  cursor: pointer;
+
+  background: linear-gradient(145deg, #5b7cfa, #2b47d9);
+  box-shadow: 0 7px 0 rgba(0, 0, 0, 0.35);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
-.ButtonStyle{
-    font-size: 18px;
-    width: 100px;
-    background-color: blue;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 4px;
-    background-color: rgb(32, 121, 255);
+
+/* Press squish */
+.level-btn:active {
+  transform: translateY(7px) scaleX(1.1) scaleY(0.9);
+  box-shadow: none;
 }
-.ButtonStyle:hover {
-    opacity: 0.6;
-    transition: 0.3s;
+
+/* Jelly hover wobble */
+.level-btn:hover {
+  animation: jelly 0.6s;
+}
+
+/* ===== Jelly Animation ===== */
+@keyframes jelly {
+  0%   { transform: scale(1,1); }
+  30%  { transform: scale(1.25,0.75); }
+  40%  { transform: scale(0.75,1.25); }
+  50%  { transform: scale(1.15,0.85); }
+  65%  { transform: scale(0.95,1.05); }
+  75%  { transform: scale(1.05,0.95); }
+  100% { transform: scale(1,1); }
+}
+
+/* ===== Difficulty Color Accents ===== */
+.level-btn.easy {
+  background: linear-gradient(145deg, #3bbf7a, #1f8b4c);
+}
+
+.level-btn.medium {
+  background: linear-gradient(145deg, #ffb347, #ff7b00);
+}
+
+.level-btn.hard {
+  background: linear-gradient(145deg, #ff5f6d, #c31432);
 }
