@@ -90,6 +90,26 @@ body {
   margin: 0 auto 14px;
 }
 
+.number-btn {
+  aspect-ratio: 1 / 1;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.18);
+  border: none;
+  color: white;
+  font-size: clamp(14px, 3vw, 18px);
+  font-weight: bold;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+}
+
+.number-btn:active {
+  transform: scale(0.9);
+}
+
+}
+
+}
+
 }
 
 .number-btn {
