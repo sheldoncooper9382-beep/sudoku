@@ -19,7 +19,8 @@ let board = solution.map(row => [...row]);
 
 // difficulty
 const params = new URLSearchParams(window.location.search);
-const level = params.get("level") || "board1";
+const level = params.get("Level") || "board1";
+
 
 let blanks = level === "board1" ? 35 :
              level === "board2" ? 45 : 55;
