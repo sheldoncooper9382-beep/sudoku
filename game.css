@@ -1,94 +1,57 @@
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
 }
 
-#timer{
-    display: inline;
-}
-.flexboxContainer{
-    border: 2px rgb(83, 229, 240) solid;
-    padding: 10px 10px;
-    margin-top: 50px;
-    margin-left: 20px;
-    float: left;
-    flex-direction:column;
-    display: flex;
-    background-color: white;
-    padding-left: 5px;
-    width: 200px;
-    height: 200px;
+#digits {
+  width: 324px;
+  height: 324px;
+  margin: 20px auto;
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  grid-template-rows: repeat(9, 1fr);
+  border: 3px solid #000;
 }
 
-.flexItem{
-    padding: 10 auto;
-    padding-top: 10px;
-    padding-left: 10px;
-    margin: 10px;
-    font-size: 16px;
-    text-align:start;
-    display: flex;
-    flex-wrap: wrap;
+/* Every cell */
+.cube {
+  width: 36px;
+  height: 36px;
+  border: 1px solid #cfcfcf;   /* light inner borders */
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  box-sizing: border-box;
 }
 
-#Submit{
-    float:right;
-    background-color: white;
-    font-size: 14px;
-    text-align: center;
-    width: 90px;
-    margin: 5px 5px;
-    color: black;
-    border: none;
+/* Given numbers */
+.cube_start {
+  background-color: #f3e6cf;   /* light beige */
+  color: #000;
 }
 
-button{
-    background-color: #008CBA;
-    font-size: 14px;
-    text-align: center;
-    width: 100px;
-    background-color: blue;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 4px;
+/* Empty / playable cells */
+.cube:not(.cube_start) {
+  background-color: #d4a24c;   /* golden tan */
 }
 
-button:hover {
-    opacity: 0.6;
-    transition: 0.3s;
+/* Thick 3x3 borders */
+.cube:nth-child(3n) {
+  border-right: 3px solid #000;
 }
 
-#digits{
-    width: 500px;
-    height: 450px;
-    margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
+.cube:nth-child(n + 19):nth-child(-n + 27),
+.cube:nth-child(n + 46):nth-child(-n + 54) {
+  border-bottom: 3px solid #000;
 }
 
-.cube{
-    width: 48px; 
-    height: 48px;
-    border: 1px solid lightgray;
-    /* Text */
-    font-size: 20px;
-    font-weight: bold;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/* Remove number spinner */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
-.horizontal-line{
-  border-bottom : 1px solid black ;
-
-}
-
-.vertical-line{
-    border-right: 1px solid black  ;
-}
-
-.cube_start{
-    background-color: rgb(205, 233, 255);
+input[type=number] {
+  -moz-appearance: textfield;
 }
