@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="game.css" type='text/css'>
+    <title>game</title>
+</head>
+
+<body>
+    <button id="Submit" type="submit" button onclick="window.location.href='levelPage.html'"><i class="fa fa-arrow-right" style="font-size:48px;color:black"></i></button>
+    <h1>Good Luck</h1>
+    
+    <div class='flexboxContainer'>
+    <div class='flexItem' id="msg"></div>
+    <div class='flexItem' id="counterWrong"></div>
+    <div class='flexItem'>Timer:&nbsp;<div id="timer"></div></div>
+    </div>
+    <br>
+    <div id="position">
+    <div id="digits">
+        <!--board-->
+    </div>
+    </div>
+    </br><br>
+    <button onclick="newBoard()">newGame</button>
+    <button onclick="finishBoard()">finish</button>
+    <button onclick="restartBoard()">again</button>
+</body>
+</html>
+<script type="text/javascript" src="game.js"></script>
+<script type="text/javascript" src="levelPage.js"></script>
+
