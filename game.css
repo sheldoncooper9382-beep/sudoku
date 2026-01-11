@@ -110,3 +110,34 @@ body {
   transform: translateY(6px) scaleX(1.1) scaleY(0.9);
   box-shadow: none;
 }
+
+/* ===== True Sudoku Pencil Notes ===== */
+.cube {
+  position: relative;
+}
+
+/* Pencil grid inside cell */
+.pencil-grid {
+  position: absolute;
+  inset: 3px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  font-size: 9px;
+  color: rgba(255,255,255,0.75);
+  pointer-events: none;
+}
+
+/* Pencil number slot */
+.pencil-note {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Final number */
+.final-number {
+  font-size: 22px;
+  font-weight: 700;
+  z-index: 2;
+}
