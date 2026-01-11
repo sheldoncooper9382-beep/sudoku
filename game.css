@@ -1,186 +1,184 @@
-/* ===============================
-   Root + Global Layout
-================================ */
 :root {
-  --board-size: min(90vw, 420px);
+  /* board will be at most 420px, shrink on smaller screens */
+  --board-size: min(86vw, 420px);
+  --app-width: min(520px, 92vw);
 }
 
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
-body {
-  min-height: 100vh;
+html,body {
+  height: 100%;
   margin: 0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
   background: radial-gradient(circle at top, #1b2a4a, #020617);
-  display: flex;
-  align-items: center;
-  justify-content: center;
   color: #fff;
 }
 
-/* ===============================
-   Glass App Container
-================================ */
+/* Centering page */
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* Glass container */
 .glass-app {
+  width: var(--app-width);
   max-height: 95vh;
-  overflow: hidden;
+  overflow: hidden;           /* hide outer scroll, inner scroll used */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-  backdrop-filter: blur(16px);
-  background: rgba(255, 255, 255, 0.08);
-  border-radius: 24px;
-  padding: 22px 24px 26px;
-
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
-  text-align: center;
+  padding: 20px;
+  border-radius: 18px;
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 30px 70px rgba(0,0,0,0.6);
 }
 
-/* ===============================
-   Header
-================================ */
+/* allow internal scroll if content taller than max-height */
+.glass-app .inner-scroll {
+  overflow-y: auto;
+  width: 100%;
+}
+
+/* Header */
 h1 {
-  margin: 0 0 14px;
+  margin: 0 0 12px 0;
   font-size: 26px;
-  letter-spacing: 0.5px;
+  align-self: flex-start;
+  padding-left: 6px;
 }
 
-/* ===============================
-   Sudoku Grid
-================================ */
+/* Sudoku grid: fixed width from root variable */
 #digits {
   width: var(--board-size);
   aspect-ratio: 1 / 1;
-
   display: grid;
   grid-template-columns: repeat(9, 1fr);
   grid-template-rows: repeat(9, 1fr);
-
-  margin: 0 auto 14px;
-  border-radius: 16px;
+  gap: 0;
+  border-radius: 12px;
+  margin: 6px 0 12px;
   overflow: hidden;
 }
 
-/* Individual Cell */
+/* each cell */
 .cube {
-  aspect-ratio: 1 / 1;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  background: rgba(255, 255, 255, 0.12);
-
   display: flex;
   align-items: center;
   justify-content: center;
 
-  font-size: clamp(16px, 4vw, 20px);
-  font-weight: 700;
-  color: #fff;
+  aspect-ratio: 1 / 1; /* keep square */
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.04);
+
   position: relative;
+  user-select: none;
 }
 
-/* Given cells */
+/* prefilled cells */
 .cube_start {
-  background: rgba(255, 255, 255, 0.28);
+  background: rgba(255,255,255,0.18);
+  color: #fff;
 }
 
-/* Thick 3x3 borders */
+/* thick 3x3 separators */
 .cube:nth-child(3n) {
-  border-right: 3px solid rgba(255, 255, 255, 0.4);
+  border-right: 3px solid rgba(255,255,255,0.18);
 }
-
 .cube:nth-child(n + 19):nth-child(-n + 27),
 .cube:nth-child(n + 46):nth-child(-n + 54) {
-  border-bottom: 3px solid rgba(255, 255, 255, 0.4);
+  border-bottom: 3px solid rgba(255,255,255,0.18);
 }
 
-/* ===============================
-   Pencil Notes (3x3 Mini Grid)
-================================ */
-.pencil-grid {
-  position: absolute;
-  inset: 3px;
-
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-
-  font-size: 9px;
-  color: rgba(255, 255, 255, 0.75);
-  pointer-events: none;
-}
-
-.pencil-note {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Final number */
+/* final number */
 .final-number {
-  font-size: clamp(18px, 4.5vw, 22px);
-  font-weight: 700;
+  font-size: clamp(18px, 4.4vw, 22px);
+  font-weight: 800;
   z-index: 2;
 }
 
-/* ===============================
-   Number Bar
-================================ */
+/* selected cell highlight */
+.cube.selected {
+  outline: 3px solid rgba(91,124,250,0.85);
+  outline-offset: -3px;
+}
+
+/* pencil mini-grid */
+.pencil-grid {
+  position: absolute;
+  inset: 4px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 0;
+  z-index: 1;
+  pointer-events: none;
+  font-size: clamp(8px, 2.2vw, 10px);
+  color: rgba(255,255,255,0.75);
+}
+
+.pencil-note {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* number bar aligned to the grid width */
 #number-bar {
   width: var(--board-size);
-
   display: grid;
   grid-template-columns: repeat(9, 1fr);
   gap: 10px;
-
-  margin: 0 auto 16px;
+  margin: 8px 0 12px;
 }
 
+/* number button style */
 .number-btn {
   aspect-ratio: 1 / 1;
-  border-radius: 14px;
-
-  background: rgba(255, 255, 255, 0.18);
+  border-radius: 12px;
   border: none;
-
+  background: rgba(255,255,255,0.14);
   color: white;
   font-size: clamp(14px, 3vw, 18px);
-  font-weight: bold;
-
+  font-weight: 700;
   cursor: pointer;
-  backdrop-filter: blur(10px);
-  transition: transform 0.1s ease;
+  backdrop-filter: blur(8px);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
 }
+.number-btn:active { transform: scale(0.93); }
 
-.number-btn:active {
-  transform: scale(0.9);
-}
-
-/* ===============================
-   Control Buttons (Jelly Roll)
-================================ */
+/* control buttons (jelly) */
 .controls {
   display: flex;
+  gap: 10px;
   flex-wrap: wrap;
-  gap: 12px;
   justify-content: center;
+  margin-top: 4px;
 }
 
 .jelly-btn {
-  padding: 12px 22px;
+  padding: 10px 16px;
   border-radius: 999px;
   border: none;
-
-  font-size: 14px;
   font-weight: 700;
-  color: #fff;
-
-  background: linear-gradient(145deg, #5b7cfa, #2b47d9);
+  color: white;
   cursor: pointer;
-
-  box-shadow: 0 6px 0 rgba(0, 0, 0, 0.35);
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  background: linear-gradient(145deg,#5b7cfa,#2b47d9);
+  box-shadow: 0 6px 0 rgba(0,0,0,0.28);
+  transition: transform 0.15s ease;
+}
+.jelly-btn:active {
+  transform: translateY(6px) scaleX(1.06) scaleY(0.94);
+  box-shadow: none;
 }
 
-.jelly-btn:active {
-  transform: translateY(6px) scaleX(1.1) scaleY(0.9);
-  box-shadow: none;
+/* small screens - slightly reduce spacing */
+@media (max-width: 420px) {
+  .glass-app { padding: 14px; }
+  h1 { font-size: 20px; }
+  #number-bar { gap: 6px; margin-bottom: 10px; }
 }
