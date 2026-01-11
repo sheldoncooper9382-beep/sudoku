@@ -1,4 +1,8 @@
 /* ===== Dark Glass Background ===== */
+:root {
+  --board-size: min(90vw, 420px);
+}
+
 body {
   min-height: 100vh;
   margin: 0;
