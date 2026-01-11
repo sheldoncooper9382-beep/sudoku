@@ -24,12 +24,16 @@ body {
 
 /* ===== Board ===== */
 #digits {
+  width: var(--board-size);
+  aspect-ratio: 1 / 1;
   display: grid;
-  grid-template-columns: repeat(9, 44px);
-  grid-template-rows: repeat(9, 44px);
-  margin: 20px auto;
+  grid-template-columns: repeat(9, 1fr);
+  grid-template-rows: repeat(9, 1fr);
+  margin: 20px auto 16px;
   border-radius: 14px;
   overflow: hidden;
+}
+
 }
 
 .cube {
