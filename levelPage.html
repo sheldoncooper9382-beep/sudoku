@@ -1,25 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="levelPage.css" type='text/css'>
-    <title>levelPage</title>
+  <meta charset="UTF-8">
+  <title>Select Level</title>
+  <link rel="stylesheet" href="levelPage.css">
 </head>
-<header>
-     <img src="image/slogo.png" alt="logo"></a>
-     <button id="Submit" type="submit" button onclick="window.location.href='index.html'"><i class="fa fa-arrow-right" style="font-size:48px;color:black"></i></button>
-</header>
 <body>
-    <div class="ButtonInLevelPage">
-    <h2>Select Difficulty</h2>
-    <button class="ButtonStyle" id="easyButton" onclick="SetLevel('easyLevel')">Easy</button>
-    <button class="ButtonStyle" id="mediumButton" onclick="SetLevel('mediumLevel')">Medium</button>
-    <button class="ButtonStyle" id="hardButton" onclick="SetLevel('hardLevel')">Hard</button>
-    </div>
+  <h2>Select Difficulty</h2>
+  <button onclick="setLevel('board1')">Easy</button>
+  <button onclick="setLevel('board2')">Medium</button>
+  <button onclick="setLevel('board3')">Hard</button>
+
+  <script src="levelPage.js"></script>
 </body>
 </html>
-<script type="text/javascript" src="levelPage.js"></script>
-
