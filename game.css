@@ -37,14 +37,18 @@ body {
 }
 
 .cube {
-  width: 44px;
-  height: 44px;
+  aspect-ratio: 1 / 1;
   border: 1px solid rgba(255,255,255,0.18);
   background: rgba(255,255,255,0.12);
   color: #fff;
-  text-align: center;
-  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(16px, 4vw, 20px);
   font-weight: 700;
+  position: relative;
+}
+
 }
 
 .cube_start {
