@@ -1,19 +1,10 @@
-function checkValidFileds(){
+function checkValidFields() {
+  const u = username.value;
+  const p = password.value;
 
-    let username =document.getElementById("username").value 
-    let password =document.getElementById("password").value 
-    
-    if(username=="abcd" & password =="1234"){
-       openLevelPage();
-    
-    }else{
-       alert("User name not found / incorrect Password. User name: abcd Password: 1234" );
-    }
-    
-    }
-    
-    function openLevelPage(){
-    
-        window.open("levelPage.html");
-    
-    }
+  if (u === "abcd" && p === "1234") {
+    window.location.href = "levelPage.html";
+  } else {
+    alert("User: abcd | Password: 1234");
+  }
+}
