@@ -75,10 +75,13 @@ body {
 
 /* ===== Number Bar ===== */
 #number-bar {
+  width: var(--board-size);
   display: grid;
   grid-template-columns: repeat(9, 1fr);
   gap: 10px;
-  margin: 16px auto;
+  margin: 0 auto 14px;
+}
+
 }
 
 .number-btn {
