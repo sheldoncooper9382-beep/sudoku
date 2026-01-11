@@ -1,179 +1,113 @@
-/* ===== Dark Glass Background ===== */
+/* ===============================
+   Root + Global Layout
+================================ */
 :root {
   --board-size: min(90vw, 420px);
 }
 
-h1 {
-  margin: 0 0 12px;
+* {
+  box-sizing: border-box;
 }
 
 body {
   min-height: 100vh;
   margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   background: radial-gradient(circle at top, #1b2a4a, #020617);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: system-ui, sans-serif;
   color: #fff;
 }
 
+/* ===============================
+   Glass App Container
+================================ */
 .glass-app {
   max-height: 95vh;
   overflow: hidden;
+
   backdrop-filter: blur(16px);
-  background: rgba(255,255,255,0.08);
+  background: rgba(255, 255, 255, 0.08);
   border-radius: 24px;
-  padding: 24px;
-  box-shadow: 0 25px 60px rgba(0,0,0,0.6);
+  padding: 22px 24px 26px;
+
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+  text-align: center;
 }
 
+/* ===============================
+   Header
+================================ */
+h1 {
+  margin: 0 0 14px;
+  font-size: 26px;
+  letter-spacing: 0.5px;
 }
 
-/* ===== Board ===== */
+/* ===============================
+   Sudoku Grid
+================================ */
 #digits {
   width: var(--board-size);
   aspect-ratio: 1 / 1;
+
   display: grid;
   grid-template-columns: repeat(9, 1fr);
   grid-template-rows: repeat(9, 1fr);
-  margin: 20px auto 16px;
-  border-radius: 14px;
+
+  margin: 0 auto 14px;
+  border-radius: 16px;
   overflow: hidden;
 }
 
-}
-
+/* Individual Cell */
 .cube {
   aspect-ratio: 1 / 1;
-  border: 1px solid rgba(255,255,255,0.18);
-  background: rgba(255,255,255,0.12);
-  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.12);
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   font-size: clamp(16px, 4vw, 20px);
   font-weight: 700;
-  position: relative;
-}
-
-}
-
-.cube_start {
-  background: rgba(255,255,255,0.25);
   color: #fff;
-}
-
-/* 3x3 grid lines */
-.cube:nth-child(3n) {
-  border-right: 3px solid rgba(255,255,255,0.4);
-}
-.cube:nth-child(n+19):nth-child(-n+27),
-.cube:nth-child(n+46):nth-child(-n+54) {
-  border-bottom: 3px solid rgba(255,255,255,0.4);
-}
-
-/* Pencil notes */
-.pencil {
-  font-size: 10px;
-  font-weight: 400;
-  line-height: 1.1;
-  white-space: pre-wrap;
-}
-
-/* ===== Number Bar ===== */
-#number-bar {
-  width: var(--board-size);
-  display: grid;
-  grid-template-columns: repeat(9, 1fr);
-  gap: 10px;
-  margin: 0 auto 14px;
-}
-
-.number-btn {
-  aspect-ratio: 1 / 1;
-  border-radius: 14px;
-  background: rgba(255,255,255,0.18);
-  border: none;
-  color: white;
-  font-size: clamp(14px, 3vw, 18px);
-  font-weight: bold;
-  cursor: pointer;
-  backdrop-filter: blur(10px);
-}
-
-.number-btn:active {
-  transform: scale(0.9);
-}
-
-}
-
-}
-
-}
-
-.number-btn {
-  aspect-ratio: 1 / 1;
-  border-radius: 14px;
-  background: rgba(255,255,255,0.18);
-  border: none;
-  color: white;
-  font-size: clamp(14px, 3vw, 18px);
-  font-weight: bold;
-  cursor: pointer;
-  backdrop-filter: blur(10px);
-}
-
-}
-
-.number-btn:active {
-  transform: scale(0.9);
-}
-
-/* ===== Jelly Buttons ===== */
-.controls {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  justify-content: center;
-  margin-top: 10px;
-}
-
-.jelly-btn {
-  padding: 12px 22px;
-  border-radius: 999px;
-  border: none;
-  font-size: 14px;
-  font-weight: 700;
-  color: white;
-  background: linear-gradient(145deg, #5b7cfa, #2b47d9);
-  cursor: pointer;
-  box-shadow: 0 6px 0 rgba(0,0,0,0.35);
-}
-
-.jelly-btn:active {
-  transform: translateY(6px) scaleX(1.1) scaleY(0.9);
-  box-shadow: none;
-}
-
-/* ===== True Sudoku Pencil Notes ===== */
-.cube {
   position: relative;
 }
 
-/* Pencil grid inside cell */
+/* Given cells */
+.cube_start {
+  background: rgba(255, 255, 255, 0.28);
+}
+
+/* Thick 3x3 borders */
+.cube:nth-child(3n) {
+  border-right: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.cube:nth-child(n + 19):nth-child(-n + 27),
+.cube:nth-child(n + 46):nth-child(-n + 54) {
+  border-bottom: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+/* ===============================
+   Pencil Notes (3x3 Mini Grid)
+================================ */
 .pencil-grid {
   position: absolute;
   inset: 3px;
+
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
+
   font-size: 9px;
-  color: rgba(255,255,255,0.75);
+  color: rgba(255, 255, 255, 0.75);
   pointer-events: none;
 }
 
-/* Pencil number slot */
 .pencil-note {
   display: flex;
   align-items: center;
@@ -182,7 +116,71 @@ body {
 
 /* Final number */
 .final-number {
-  font-size: 22px;
+  font-size: clamp(18px, 4.5vw, 22px);
   font-weight: 700;
   z-index: 2;
+}
+
+/* ===============================
+   Number Bar
+================================ */
+#number-bar {
+  width: var(--board-size);
+
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  gap: 10px;
+
+  margin: 0 auto 16px;
+}
+
+.number-btn {
+  aspect-ratio: 1 / 1;
+  border-radius: 14px;
+
+  background: rgba(255, 255, 255, 0.18);
+  border: none;
+
+  color: white;
+  font-size: clamp(14px, 3vw, 18px);
+  font-weight: bold;
+
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  transition: transform 0.1s ease;
+}
+
+.number-btn:active {
+  transform: scale(0.9);
+}
+
+/* ===============================
+   Control Buttons (Jelly Roll)
+================================ */
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+
+.jelly-btn {
+  padding: 12px 22px;
+  border-radius: 999px;
+  border: none;
+
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+
+  background: linear-gradient(145deg, #5b7cfa, #2b47d9);
+  cursor: pointer;
+
+  box-shadow: 0 6px 0 rgba(0, 0, 0, 0.35);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.jelly-btn:active {
+  transform: translateY(6px) scaleX(1.1) scaleY(0.9);
+  box-shadow: none;
 }
